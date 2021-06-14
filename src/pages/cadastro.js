@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import api from '../config/api';
 
 class App extends Component {
@@ -116,7 +116,8 @@ class App extends Component {
               </div>
               <br/>
               <div class="text-center col-md-12">
-                  <button type="submit" class="btn btn-primary">Gravar</button>
+                  <button type="submit" class="btn btn-success">Gravar</button>
+                  <Link to={`/`} class="btn btn-warning mx-2"> Voltar </Link>  
               </div>
             </form>
           </div>

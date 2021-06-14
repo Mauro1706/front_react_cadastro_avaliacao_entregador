@@ -79,7 +79,7 @@ class Deletar extends Component {
               </div>
               <br />
               
-              <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-info mx-2"> Voltar </Link>  
+              <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-warning mx-2"> Voltar </Link>  
               <button onClick={this.handleClick} class="btn btn-danger mx-2"> Remover </button>
             </div >
           </div>

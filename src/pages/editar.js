@@ -98,7 +98,7 @@ class Editar extends Component {
               <br/>
               <div class="text-center col-md-12">
                   <button type="submit" class="btn btn-success mx-2">Gravar</button>
-                  <Link to={`/`} class="btn btn-warning mx-2"> Voltar </Link> 
+                  <Link to={`/detalhes/${this.state.aval._id}`} class="btn btn-warning mx-2"> Voltar </Link>  
               </div>
             </form>
           </div>
