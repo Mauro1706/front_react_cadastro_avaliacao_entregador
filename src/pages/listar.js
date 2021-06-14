@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../config/api';
 
-class App extends Component {
+class Listar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      aval: [],
+      avaliacoes: [],
     };
   }
 
   async componentDidMount() {
     const response = await api.get('/listar');    
-    this.setState({aval: response.data});
+    this.setState({avaliacoes: response.data});
   }
 
   render(){
 
-    const { aval } = this.state;
+    const { avaliacoes } = this.state;
 
     return(
       <div class="my-5 container">
@@ -35,16 +36,17 @@ class App extends Component {
               </tr>
             </thead>
             <tbody>
-            {aval.map(avaliacao => (
-              <tr key="{avaliacao._id}">
+            {avaliacoes.map((avaliacao, index) => (
+              <tr key={index}>
                 <td>{avaliacao._id}</td>
                 <td>{avaliacao.nomeEntregador}</td>
                 <td>{avaliacao.nomeAvaliador}</td>
                 <td>{avaliacao.data}</td>
                 <td>{avaliacao.observacao}</td>
                 <td class="text-center">
-                  <a href="/editar/60c2abd836d4c1312cab1063" class="btn btn-warning" value="Editar">Editar</a>
-                  <a href="/editar" class="btn btn-danger" value="Editar">Excluir</a>
+                  <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-primary">Detalhes</Link>
+                  <Link to={`/editar/${avaliacao._id}`} class="btn btn-warning">Editar</Link>
+                  <Link to={`/editar/${avaliacao._id}`} class="btn btn-danger">Excluir</Link>
                 </td>
               </tr>
             ))}
@@ -56,4 +58,4 @@ class App extends Component {
   };
 };
 
-export default App;
+export default Listar;
