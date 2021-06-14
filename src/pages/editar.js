@@ -27,6 +27,18 @@ class Editar extends Component {
     ); 
   }
 
+  exibeErro() {
+      const { messageError } = this.state;
+
+      if (messageError) {
+          return (
+              <div className="alert alert-danger" role="alert">
+                  Erro de conexão com o servidor
+              </div>
+          );
+      }
+  }
+
   handleInputChange = event =>{
     const target = event.target;
     const name = target.name;
@@ -39,14 +51,16 @@ class Editar extends Component {
 
   hendlerSubmint = event => {
     const { id } = this.state.avaliacao;
-    const response = api.put(`/alterar/${id}`, JSON.stringify(this.state.avaliacao))
-      .then(response => {
-        if (!response.error){
-          this.setState({ redirect: true });
-        } else {
-          this.setState({ messageError: response.message });
-        }
-      });    
+    api.put(`/alterar/${id}`, JSON.stringify(this.state.avaliacao))
+    .then(response => {
+      if (response.error){
+        this.setState({ redirect: true });
+      } else {
+        this.setState({ messageError: response.message });
+      }
+    }).catch(
+      erro => this.setState({ messageError: erro })
+    ); ;    
 
     event.preventDefault();
   };

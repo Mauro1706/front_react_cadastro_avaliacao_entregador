@@ -13,9 +13,20 @@ class App extends Component {
         nomeAvaliador: "",
         observacao: "",
       },
-      messageError: "",
+      messageError: null,
       redirect: false,
     };
+  }
+
+  exibeErro() {
+    const { messageError } = this.state;
+    if (messageError) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Erro de conexão com o servidor
+            </div>
+        );
+    }
   }
 
   handleInputChange = event =>{
@@ -30,7 +41,7 @@ class App extends Component {
 
   hendlerSubmint = event => {
     
-    const response = api.post('/cadastrar', JSON.stringify(this.state.aval))
+    api.post('/cadastrar', JSON.stringify(this.state.aval))
       .then(response => {
         if (!response.error){
           this.setState({ redirect: true });
@@ -40,7 +51,6 @@ class App extends Component {
       })
       .catch(error => {
         this.setState({ errorMessage: error.message });
-        console.error('There was an error!', error);
       });    
 
     event.preventDefault();

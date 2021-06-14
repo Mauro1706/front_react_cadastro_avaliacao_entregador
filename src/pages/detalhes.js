@@ -46,7 +46,7 @@ class Detalhes extends Component {
               <br />
               <Link to={`/`} class="btn btn-info mx-2"> Voltar </Link> 
               <Link to={`/editar/${avaliacao._id}`} class="btn btn-warning mx-2"> Editar </Link> 
-              <Link to={`/deletar/${avaliacao._id}`} class="btn btn-danger mx-2"> Deletar </Link> 
+              <Link to={`/deletar/${avaliacao._id}`} class="btn btn-danger mx-2">Excluir</Link>
           </div >
         </div>
       </div>

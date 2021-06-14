@@ -45,8 +45,6 @@ class Listar extends Component {
                 <td>{avaliacao.observacao}</td>
                 <td class="text-center">
                   <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-primary">Detalhes</Link>
-                  <Link to={`/editar/${avaliacao._id}`} class="btn btn-warning">Editar</Link>
-                  <Link to={`/editar/${avaliacao._id}`} class="btn btn-danger">Excluir</Link>
                 </td>
               </tr>
             ))}
