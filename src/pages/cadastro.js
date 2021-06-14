@@ -41,7 +41,7 @@ class App extends Component {
 
   hendlerSubmint = event => {
     
-    api.post('/cadastrar', JSON.stringify(this.state.aval))
+    api.post('/cadastrar', this.state.aval)
       .then(response => {
         if (!response.error){
           this.setState({ redirect: true });
