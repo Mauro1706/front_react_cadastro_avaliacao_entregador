@@ -22,7 +22,7 @@ class Listar extends Component {
     return(
       <div class="my-5 container">
         <h1>Listar Avaliados</h1>
-        <div class="text-right"><a href="/cadastro" class="btn btn-primary" value="Editar">Nova Avaliação</a></div>
+        <div class="text-right"><a href="/cadastro" class="btn btn-info" value="Editar">Nova Avaliação</a></div>
         <div class="my-5">
           <table class="table table-responsive table-hover">
             <thead>
@@ -44,7 +44,7 @@ class Listar extends Component {
                 <td>{avaliacao.data}</td>
                 <td>{avaliacao.observacao}</td>
                 <td class="text-center">
-                  <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-primary">Detalhes</Link>
+                  <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-warning">Detalhes</Link>
                 </td>
               </tr>
             ))}
