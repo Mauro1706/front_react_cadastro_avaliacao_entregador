@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import api from '../config/api';
+import api from '../../config/api';
 
-class App extends Component {
+class Editar extends Component {
   
   constructor(props) {
     super(props);
@@ -13,61 +13,42 @@ class App extends Component {
         nomeAvaliador: "",
         observacao: "",
       },
-      messageError: null,
+      erro: null,
       redirect: false,
     };
   }
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    api.get(`/buscar/${id}`).then(
+      avaliacao => { this.setState({ aval: avaliacao.data }) }
+    ).catch(
+      erro => this.setState({ erro: erro })
+    ); 
+  }
+
   exibeErro() {
-    const { messageError } = this.state;
-    if (messageError) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                Erro de conexão com o servidor
-            </div>
-        );
-    }
+      const { erro } = this.state;
+
+      if (erro) {
+          return (
+              <div className="alert alert-danger" role="alert">
+                  Erro de conexão com o servidor
+              </div>
+          );
+      }
   }
-
-  handleInputChange = event =>{
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    this.setState(prevState => ({
-      aval: {...prevState.aval, [name]: value }
-    }));
-  }
-
-  hendlerSubmint = event => {
-    
-    api.post('/cadastrar', this.state.aval)
-      .then(response => {
-        if (!response.error){
-          this.setState({ redirect: true });
-        } else {
-          this.setState({ messageError: response.message });
-        }
-      })
-      .catch(error => {
-        this.setState({ errorMessage: error.message });
-      });    
-
-    event.preventDefault();
-  };
 
   render(){
-
     const { redirect } = this.state;
     if (redirect) {
       return <Redirect to="/" />;
     } else {
       return(
         <div class="my-5 container">
-          <h1>Nova Avaliação</h1>
-          <div>{this.state.messageError}</div>
+          <h1>Atualizar Avaliação</h1>
           <div class="my-5">
-            <form class="form" onSubmit= { this.hendlerSubmint }>
+            <form class="form" onSubmit={this.handleSubmit}>
               <div class="form-group row">
                 <label htmlFor="nomeAvaliador" class="col-sm-4 col-form-label text-right">Nome Avaliador:</label>
                 <div class="col-sm-6">
@@ -116,8 +97,8 @@ class App extends Component {
               </div>
               <br/>
               <div class="text-center col-md-12">
-                  <button type="submit" class="btn btn-success">Gravar</button>
-                  <Link to={`/`} class="btn btn-warning mx-2"> Voltar </Link>  
+                  <button type="submit" class="btn btn-success mx-2">Gravar</button>
+                  <Link to={`/detalhes/${this.state.aval._id}`} class="btn btn-warning mx-2"> Voltar </Link>  
               </div>
             </form>
           </div>
@@ -126,6 +107,33 @@ class App extends Component {
     }
   };
 
+  handleInputChange = event =>{
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    this.setState(prevState => ({
+      aval: {...prevState.aval, [name]: value }
+    }));
+  }
+
+  handleSubmit = event => {
+    const { id } = this.props.match.params;
+    
+    api.put(`/alterar/${id}`, this.state.aval)
+    .then(response => {
+      if (!response.error){
+        this.setState({ redirect: true });
+      } else {
+        this.setState({ erro: response });
+      }
+    }).catch(
+      erro => this.setState({ erro: erro })
+    );    
+
+    event.preventDefault();
+  };
+
 };
 
-export default App;
+export default Editar;

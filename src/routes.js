@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import Listar from './pages/listar';
-import Cadastro from './pages/cadastro';
-import Editar from './pages/editar';
-import Detalhes from './pages/detalhes';
-import Deletar from './pages/deletar';
+import ListarAvaliacao from './pages/avaliacao/listar';
+import CadastroAvaliacao from './pages/avaliacao/cadastro';
+import EditarAvaliacao from './pages/avaliacao/editar';
+import DetalhesAvaliacao from './pages/avaliacao/detalhes';
+import DeletarAvaliacao from './pages/avaliacao/deletar';
+import Login from './pages/users/login';
 
 const Routes = () => (
     
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Listar} />
-      <Route exact path="/detalhes/:id" component={Detalhes} />
-      <Route exact path="/editar/:id" component={Editar} />
-      <Route exact path="/cadastro" component={Cadastro} />
-      <Route exact path="/deletar/:id" component={Deletar} />
-    </Switch>
-  </BrowserRouter>
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/listaravaliacao" component={ListarAvaliacao} />
+            <Route exact path="/detalhes/:id" component={DetalhesAvaliacao} />
+            <Route exact path="/editar/:id" component={EditarAvaliacao} />
+            <Route exact path="/cadastro" component={CadastroAvaliacao} />
+            <Route exact path="/deletar/:id" component={DeletarAvaliacao} />
+        </Switch>
+    </BrowserRouter>
 )
 
 export default Routes;

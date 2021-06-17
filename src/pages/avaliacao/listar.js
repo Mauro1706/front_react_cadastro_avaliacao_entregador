@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../config/api';
+import api from '../../config/api';
 
 class Listar extends Component {
   constructor(props) {
