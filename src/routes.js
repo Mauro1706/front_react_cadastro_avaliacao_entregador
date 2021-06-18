@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
+import Deshboard from './pages/components/dashboard';
 import ListarAvaliacao from './pages/avaliacao/listar';
 import CadastroAvaliacao from './pages/avaliacao/cadastro';
 import EditarAvaliacao from './pages/avaliacao/editar';
@@ -11,9 +12,9 @@ import CadastroUsuario from './pages/users/cadastro';
 import ListarUsers from './pages/users/listar';
 
 const Routes = () => (
-    
     <BrowserRouter>
         <Switch>
+            <Route exact path="/" component={Deshboard} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/novo-usuario" component={CadastroUsuario} />
             <Route exact path="/listarusuarios" component={ListarUsers} />

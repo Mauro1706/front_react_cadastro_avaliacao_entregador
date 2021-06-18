@@ -43,7 +43,7 @@ class ListarUsers extends Component {
         return (
             <div class="my-5 container">
                 <h1>Listar Usuários</h1>
-                <div class="text-right"><a href="/cadastro" class="btn btn-outline-info" value="Editar">Nova Avaliação</a></div>
+                <div class="text-right"><a href="/novo-usuario" class="btn btn-outline-info" value="Editar">Novo Usuário</a></div>
                 <div class="my-5">
                     <table class="table table-bordered table-hover">
                         <thead>

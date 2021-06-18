@@ -64,15 +64,15 @@ class App extends Component {
     } else {
       return(
         <div class="my-5 container">
-          <h1>Nova Avaliação</h1>
+          <h1 className={'text-center bg-light'}>Cadastro de Usuário</h1>
           <div>{this.state.messageError}</div>
           <div class="my-5">
             <form class="form" onSubmit= { this.hendlerSubmint }>
               <div class="form-group row">
-                <label htmlFor="nomeAvaliador" class="col-sm-4 col-form-label text-right">Nome Avaliador:</label>
+                <label htmlFor="nomeAvaliador" class="col-sm-4 col-form-label text-right">Nome Usuário:</label>
                 <div class="col-sm-6">
                   <input type="input" required="required" class="form-control" name="nomeAvaliador" id="nomeAvaliador" 
-                  placeholder="Nome Completo do avaliador" 
+                  placeholder="Nome Completo do Usuário"
                   value={this.state.aval.nomeAvaliador}
                   onChange={ this.handleInputChange } />
                 </div>
