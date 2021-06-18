@@ -117,7 +117,7 @@ class App extends Component {
               <br/>
               <div class="text-center col-md-12">
                   <button type="submit" class="btn btn-success">Gravar</button>
-                  <Link to={`/listaravaliacao`} class="btn btn-warning mx-2"> Voltar </Link>
+                  <Link to={`/`} class="btn btn-warning mx-2"> Voltar </Link>  
               </div>
             </form>
           </div>

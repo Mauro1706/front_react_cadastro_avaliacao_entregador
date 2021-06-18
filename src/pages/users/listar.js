@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import api from '../../config/apiUsers';
 
 class ListarUsers extends Component {
@@ -11,44 +11,64 @@ class ListarUsers extends Component {
     }
 
     async componentDidMount() {
-        try{
+        try {
             const response = await api.get('/users');
-            this.setState({avaliacoes: response.data});
+            console.log(response.data);
+            this.setState({users: response.data});
         } catch (e) {
-            this.setState({avaliacoes: []});
+            this.setState({users: []});
         }
     }
 
-    render(){
+    handleButtonChange = event => {
+        const target = event.target;
+        const value = target.value;
 
-        const { avaliacoes } = this.state;
+        api.delete(`/delete/${value}`)
+            .then(response => {
+                if (!response.error) {
+                   window.location.reload();
+                }
+            }).catch(
+                erro => this.setState({erro: erro})
+            );
 
-        return(
+        event.preventDefault();
+    }
+
+    render() {
+
+        const {users} = this.state;
+
+        return (
             <div class="my-5 container">
-                <h1>Listar Avaliados</h1>
-                <div class="text-right"><a href="/cadastro" class="btn btn-info" value="Editar">Nova Avaliação</a></div>
+                <h1>Listar Usuários</h1>
+                <div class="text-right"><a href="/cadastro" class="btn btn-outline-info" value="Editar">Nova Avaliação</a></div>
                 <div class="my-5">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr class="text-center bg-info">
                             <th>Código</th>
-                            <th>Entregador</th>
-                            <th>Avaliador</th>
-                            <th>Data</th>
-                            <th>Observações</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Tipo Usuário</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {avaliacoes.map((avaliacao, index) => (
+                        {users.map((user, index) => (
                             <tr key={index}>
-                                <td>{avaliacao._id}</td>
-                                <td>{avaliacao.nomeEntregador}</td>
-                                <td>{avaliacao.nomeAvaliador}</td>
-                                <td>{avaliacao.data}</td>
-                                <td>{avaliacao.observacao}</td>
+                                <td className={'text-center'}>{index + 1}</td>
+                                <td>{user.name}</td>
+                                <td className={'text-center'}>{user.cpf}</td>
+                                <td>{user.isFaceta ? "Entregador" : "Usuário Comum"}</td>
                                 <td class="text-center">
-                                    <Link to={`/detalhes/${avaliacao._id}`} class="btn btn-warning">Detalhes</Link>
+                                    <Link to={`/alter-password/${user._id}`} className="btn btn-outline-warning">Alterar
+                                        Senha</Link>&nbsp;
+                                    <button onClick={this.handleButtonChange} refresh="true" value={user._id}
+                                            className="btn btn-outline-danger">Deletar
+                                    </button>
+                                    &nbsp;
                                 </td>
                             </tr>
                         ))}

@@ -64,7 +64,6 @@ class App extends Component {
                     <div>{this.state.messageError}</div>
                     <div class="text-center">
                         <form className="form-signin" onSubmit={this.hendlerSubmint}>
-
                             <img className="mb-4" src=""
                                  alt="" width="72" height="72"/>
                             <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -85,7 +84,7 @@ class App extends Component {
                             </div>
                             <div className="checkbox mb-3">
                                 <label>
-                                    <input type="checkbox" value="remember-me"/> Remember me
+                                    Não tem conta? <Link to={`/novo-usuario`} class="">Inscrever-se</Link>
                                 </label>
                             </div>
                             <div className="text-center">

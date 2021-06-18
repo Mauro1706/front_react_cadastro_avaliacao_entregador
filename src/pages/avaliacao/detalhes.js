@@ -44,7 +44,7 @@ class Detalhes extends Component {
             <label class="col-sm-12 col-form-label"><b>Observações:</b> {avaliacao.observacao}</label>
           </div>
               <br />
-              <Link to={`/`} class="btn btn-info mx-2"> Voltar </Link> 
+              <Link to={`/listaravaliacao`} class="btn btn-info mx-2"> Voltar </Link>
               <Link to={`/editar/${avaliacao._id}`} class="btn btn-warning mx-2"> Editar </Link> 
               <Link to={`/deletar/${avaliacao._id}`} class="btn btn-danger mx-2">Excluir</Link>
           </div >
